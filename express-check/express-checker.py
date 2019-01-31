@@ -8,8 +8,15 @@ import requests
 from bs4 import BeautifulSoup
 
 
-# 運行情報を確認し、運行情報を返却する
 def checkOperationInfo(url):
+    """
+    運行情報を確認し、運行情報を返却する
+
+    Parameters
+    ----------
+    url : string
+        運行情報対象URL
+    """
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
     og_desc = soup.find('meta', attrs={
@@ -17,8 +24,10 @@ def checkOperationInfo(url):
     return (og_desc['content'])
 
 
-# main 関数
 def main():
+    """
+    main 関数
+    """
     infos = []
     dict_transit_urls = {
         "北海道": "https://transit.yahoo.co.jp/traininfo/detail/637/0/",
